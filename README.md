@@ -12,6 +12,17 @@ A native iOS app for discovering hackathons, saving the ones you like, tracking 
 - **Appearance** — System / Light / Dark theme preference, persisted across launches.
 - **Animated splash** — A zoom-in launch screen with the HackHQ logo that blends seamlessly into the brand background in both light and dark mode.
 
+## Screenshots
+
+| Screen | Light | Dark |
+| --- | --- | --- |
+| Discover | <img src="docs/screenshots/dashboardlight.png" width="220" alt="Discover feed, light mode" /> | <img src="docs/screenshots/dashboarddark.png" width="220" alt="Discover feed, dark mode" /> |
+| My Hackathons | <img src="docs/screenshots/mylight.png" width="220" alt="My Hackathons, light mode" /> | <img src="docs/screenshots/mydark.png" width="220" alt="My Hackathons, dark mode" /> |
+| Detail | <img src="docs/screenshots/detailslight.png" width="220" alt="Hackathon detail, light mode" /> | <img src="docs/screenshots/detailsdark.png" width="220" alt="Hackathon detail, dark mode" /> |
+| Saved | — | <img src="docs/screenshots/saveddark.png" width="220" alt="Saved hackathons, dark mode" /> |
+| Settings | — | <img src="docs/screenshots/settingsdark.png" width="220" alt="Settings, dark mode" /> |
+| Splash | — | <img src="docs/screenshots/splashdark.png" width="220" alt="Animated splash screen, dark mode" /> |
+
 ## Tech stack
 
 - **SwiftUI** for the UI
