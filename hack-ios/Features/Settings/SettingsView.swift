@@ -9,6 +9,9 @@ import SwiftUI
 import UserNotifications
 
 struct SettingsView: View {
+    @AppStorage(AppThemeStorage.key)
+    private var appTheme: AppTheme = .system
+
     @State
     private var notificationStatusText =
         "Checking permission…"
@@ -16,7 +19,29 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("Notifications") {
+                Section {
+                    Picker(
+                        "Theme",
+                        selection: $appTheme
+                    ) {
+                        ForEach(AppTheme.allCases) { theme in
+                            Label(
+                                theme.displayName,
+                                systemImage: theme.symbolName
+                            )
+                            .tag(theme)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                } header: {
+                    SectionEyebrow("Appearance")
+                } footer: {
+                    Text(
+                        "Choose how HackHQ looks. System follows your device setting."
+                    )
+                }
+
+                Section {
                     LabeledContent(
                         "Permission",
                         value: notificationStatusText
@@ -27,9 +52,12 @@ struct SettingsView: View {
                             await requestPermission()
                         }
                     }
+                    .tint(.brandOrange)
+                } header: {
+                    SectionEyebrow("Notifications")
                 }
 
-                Section("About") {
+                Section {
                     LabeledContent(
                         "App",
                         value: "HackHQ"
@@ -39,8 +67,34 @@ struct SettingsView: View {
                         "Version",
                         value: appVersion
                     )
+                } header: {
+                    SectionEyebrow("About")
+                }
+
+                Section {
+                    VStack(spacing: 8) {
+                        Image("AppLogo")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 44)
+                            .clipShape(
+                                RoundedRectangle(
+                                    cornerRadius: 10,
+                                    style: .continuous
+                                )
+                            )
+
+                        Text("HackHQ \(appVersion)")
+                            .font(.caption)
+                            .foregroundStyle(Color.brandInkSecondary)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 8)
+                    .listRowBackground(Color.clear)
                 }
             }
+            .scrollContentBackground(.hidden)
+            .brandBackground()
             .navigationTitle("Settings")
             .task {
                 await loadNotificationStatus()

@@ -43,11 +43,12 @@ struct MyHackathonsView: View {
                                         spacing: 8
                                     ) {
                                         Text(hackathon.name)
-                                            .font(.headline)
+                                            .font(.brandHeadline)
+                                            .foregroundStyle(Color.brandInk)
 
                                         Text(hackathon.location)
                                             .font(.subheadline)
-                                            .foregroundStyle(.secondary)
+                                            .foregroundStyle(Color.brandInkSecondary)
 
                                         StatusBadge(
                                             status: application.status
@@ -55,12 +56,15 @@ struct MyHackathonsView: View {
                                     }
                                     .padding(.vertical, 4)
                                 }
+                                .listRowBackground(Color.brandSurface)
                             }
                         }
                         .onDelete(perform: deleteApplications)
                     }
+                    .scrollContentBackground(.hidden)
                 }
             }
+            .brandBackground()
             .navigationTitle("My Hackathons")
         }
     }

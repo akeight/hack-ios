@@ -12,7 +12,7 @@ import SwiftData
 struct hack_iosApp: App {
     var body: some Scene {
         WindowGroup {
-            RootTabView()
+            RootContainerView()
         }
         .modelContainer(
             for: [

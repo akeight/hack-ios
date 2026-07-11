@@ -41,21 +41,25 @@ struct SavedHackathonsView: View {
                                 spacing: 6
                             ) {
                                 Text(hackathon.name)
-                                    .font(.headline)
+                                    .font(.brandHeadline)
+                                    .foregroundStyle(Color.brandInk)
 
                                 Text(hackathon.location)
                                     .font(.subheadline)
-                                    .foregroundStyle(.secondary)
+                                    .foregroundStyle(Color.brandInkSecondary)
 
                                 Text(dateText(for: hackathon))
                                     .font(.caption)
-                                    .foregroundStyle(.secondary)
+                                    .foregroundStyle(Color.brandOrange)
                             }
                             .padding(.vertical, 4)
                         }
+                        .listRowBackground(Color.brandSurface)
                     }
+                    .scrollContentBackground(.hidden)
                 }
             }
+            .brandBackground()
             .navigationTitle("Saved")
         }
     }

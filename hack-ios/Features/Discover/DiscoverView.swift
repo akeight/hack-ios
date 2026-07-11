@@ -35,9 +35,16 @@ struct DiscoverView: View {
                     ProgressView(
                         "Loading hackathons…"
                     )
+                    .tint(.brandOrange)
                 } else {
                     ScrollView {
-                        LazyVStack(spacing: 16) {
+                        LazyVStack(
+                            alignment: .leading,
+                            spacing: BrandMetrics.sectionSpacing
+                        ) {
+                            SectionEyebrow("Upcoming hackathons")
+                                .padding(.horizontal, 4)
+
                             ForEach(hackathons) { hackathon in
                                 NavigationLink {
                                     HackathonDetailView(
@@ -51,10 +58,11 @@ struct DiscoverView: View {
                                 .buttonStyle(.plain)
                             }
                         }
-                        .padding()
+                        .padding(BrandMetrics.screenPadding)
                     }
                 }
             }
+            .brandBackground()
             .navigationTitle("Discover")
             .task {
                 await loadSampleDataIfNeeded()

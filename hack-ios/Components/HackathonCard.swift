@@ -18,18 +18,19 @@ struct HackathonCard: View {
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(hackathon.name)
-                        .font(.headline)
+                        .font(.brandHeadline)
+                        .foregroundStyle(Color.brandInk)
 
                     Text(hackathon.organizer)
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .font(.brandSubheadline)
+                        .foregroundStyle(Color.brandInkSecondary)
                 }
 
                 Spacer()
 
                 if hackathon.isFeatured {
                     Image(systemName: "sparkles")
-                        .foregroundStyle(.orange)
+                        .foregroundStyle(Color.brandOrange)
                 }
             }
 
@@ -38,12 +39,14 @@ struct HackathonCard: View {
                 systemImage: "mappin.and.ellipse"
             )
             .font(.subheadline)
+            .foregroundStyle(Color.brandInk)
 
             Label(
                 dateRangeText,
                 systemImage: "calendar"
             )
             .font(.subheadline)
+            .foregroundStyle(Color.brandInk)
 
             if let deadline = hackathon.applicationDeadline {
                 let formattedDeadline = deadline.formatted(
@@ -56,7 +59,7 @@ struct HackathonCard: View {
                     systemImage: "clock"
                 )
                 .font(.subheadline)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Color.brandOrange)
             }
 
             if !hackathon.tags.isEmpty {
@@ -70,11 +73,7 @@ struct HackathonCard: View {
                 .scrollIndicators(.hidden)
             }
         }
-        .padding()
-        .background(.regularMaterial)
-        .clipShape(
-            RoundedRectangle(cornerRadius: 20)
-        )
+        .brandCard(featured: hackathon.isFeatured)
     }
 
     private var dateRangeText: String {

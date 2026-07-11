@@ -41,6 +41,7 @@ struct HackathonDetailView: View {
             }
             .padding()
         }
+        .brandBackground()
         .navigationBarTitleDisplayMode(.inline)
         .sheet(
             isPresented: $isShowingReminderEditor
@@ -53,11 +54,15 @@ struct HackathonDetailView: View {
 
     private var headerSection: some View {
         VStack(alignment: .leading, spacing: 8) {
+            SectionEyebrow(hackathon.format.displayName)
+
             Text(hackathon.name)
-                .font(.largeTitle.bold())
+                .font(.brandLargeTitle)
+                .foregroundStyle(Color.brandInk)
 
             Text(hackathon.organizer)
-                .foregroundStyle(.secondary)
+                .font(.brandSubheadline)
+                .foregroundStyle(Color.brandInkSecondary)
         }
     }
 
@@ -107,9 +112,11 @@ struct HackathonDetailView: View {
     private var descriptionSection: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("About")
-                .font(.title2.bold())
+                .font(.brandTitle)
+                .foregroundStyle(Color.brandInk)
 
             Text(hackathon.summary)
+                .foregroundStyle(Color.brandInk)
         }
     }
 
@@ -127,9 +134,8 @@ struct HackathonDetailView: View {
                         ? "bookmark.fill"
                         : "bookmark"
                 )
-                .frame(maxWidth: .infinity)
             }
-            .buttonStyle(.borderedProminent)
+            .buttonStyle(.primaryBrand)
 
             Button {
                 trackHackathon()
@@ -140,9 +146,8 @@ struct HackathonDetailView: View {
                         : "Application Tracked",
                     systemImage: "checklist"
                 )
-                .frame(maxWidth: .infinity)
             }
-            .buttonStyle(.bordered)
+            .buttonStyle(.secondaryBrand)
             .disabled(hackathon.application != nil)
 
             Button {
@@ -152,9 +157,8 @@ struct HackathonDetailView: View {
                     "Add Reminder",
                     systemImage: "bell.badge"
                 )
-                .frame(maxWidth: .infinity)
             }
-            .buttonStyle(.bordered)
+            .buttonStyle(.secondaryBrand)
 
             if let url = URL(
                 string: hackathon.websiteURL
@@ -164,18 +168,16 @@ struct HackathonDetailView: View {
                         "Open Website",
                         systemImage: "safari"
                     )
-                    .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(.bordered)
+                .buttonStyle(.secondaryBrand)
 
                 ShareLink(item: url) {
                     Label(
                         "Share Hackathon",
                         systemImage: "square.and.arrow.up"
                     )
-                    .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(.bordered)
+                .buttonStyle(.secondaryBrand)
             }
         }
     }
@@ -183,7 +185,8 @@ struct HackathonDetailView: View {
     private var reminderSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Reminders")
-                .font(.title2.bold())
+                .font(.brandTitle)
+                .foregroundStyle(Color.brandInk)
 
             ForEach(hackathon.reminders) { reminder in
                 HStack {
@@ -192,7 +195,8 @@ struct HackathonDetailView: View {
                             reminder.customTitle
                             ?? reminder.type.displayName
                         )
-                        .font(.headline)
+                        .font(.brandHeadline)
+                        .foregroundStyle(Color.brandInk)
 
                         Text(
                             reminder.reminderDate.formatted(

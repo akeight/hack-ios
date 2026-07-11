@@ -12,10 +12,15 @@ struct TagChip: View {
 
     var body: some View {
         Text(name)
-            .font(.caption)
-            .padding(.horizontal, 9)
+            .font(.caption.weight(.medium))
+            .foregroundStyle(Color.brandOrange)
+            .padding(.horizontal, 10)
             .padding(.vertical, 5)
-            .background(.thinMaterial)
+            .background(Color.brandOrangeSoft)
             .clipShape(Capsule())
+            .overlay(
+                Capsule()
+                    .stroke(Color.brandOrange.opacity(0.25), lineWidth: 1)
+            )
     }
 }
